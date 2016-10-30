@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Set some basic project information and targets -->
-<project name="ss-panel" default="build">
+<project name="AlaSS-panel" default="build">
 
 <target name="build"
    depends="prepare, lint, phploc, phpmd, phpcpd, phpcs, phpunit"/>  
