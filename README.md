@@ -1,5 +1,4 @@
 # ss-panel
-AlaSS Docs
 
 Let's talk about cat.  Based on [LightFish](https://github.com/Pongtan/LightFish).
 
