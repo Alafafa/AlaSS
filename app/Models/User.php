@@ -24,6 +24,7 @@ class User extends Model
         "u" => 'int',
         "d" => 'int',
         "port" => 'int',
+    	"node_id" => 'int',
         "transfer_enable" => 'float',
         "enable" => 'int',
         'is_admin' => 'boolean',
@@ -148,6 +149,15 @@ class User extends Model
             return true;
         }
         return false;
+    }
+    
+    public function isAbleToChgNode()
+    {
+    	if ($this->attributes['node_id'] == 0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     /*

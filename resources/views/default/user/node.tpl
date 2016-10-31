@@ -25,6 +25,7 @@
         </div>
 
         {foreach $nodes as $node}
+        	{if $user->node_id == $node->id }
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-widget">
@@ -83,8 +84,32 @@
                 </div><!-- /.col -->
             </div>
             <!-- /.row -->
-
-
+            {else}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-widget">
+                        <div class="box-body">
+                            <ul class="products-list product-list-in-box">
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="../assets/public/img/iconfont-server.png" alt="Server Node">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="#" class="product-title">{$node->name} <span
+                                                    class="label label-info pull-right">{$node->status}</span></a>
+                                        <p>
+                                            {$node->info} 
+                                            <br/>您的账号在该节点不能使用！
+                                        </p>
+                                    </div>
+                                </li><!-- /.item -->
+                            </ul>
+                        </div>
+                    </div><!-- /.widget-user -->
+                </div><!-- /.col -->
+            </div>
+            <!-- /.row -->
+			{/if}
         {/foreach}
     </section>
     <!-- /.content -->

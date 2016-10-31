@@ -107,6 +107,12 @@
                             <dd>{$user->port}</dd>
                             <dt>密码</dt>
                             <dd>{$user->passwd}</dd>
+                            <dt>主机</dt>
+                        	{if $user->isAbleToChgNode() }
+                            <dd>不限</dd>
+                        	{else}
+                            <dd>{$user->node_id}</dd>
+                        	{/if}
                             <dt>自定义加密方式</dt>
                             <dd>{$user->method}</dd>
                             <dt>上次使用</dt>
