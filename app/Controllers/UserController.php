@@ -38,7 +38,10 @@ class UserController extends BaseController
         if ($msg == null) {
             $msg = "在后台修改用户中心公告...";
         }
-        return $this->view()->assign('msg', $msg)->display('user/index.tpl');
+        
+        $node = Node::find($this->user->node_id);
+        
+        return $this->view()->assign('msg', $msg)->assign('node', $node)->display('user/index.tpl');
     }
 
     public function node($request, $response, $args)

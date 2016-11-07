@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col l6 s12">
 				<h5 class="white-text">关于</h5>
-				<p class="grey-text text-lighten-4">本站提供某种帐号用于科学上网.</p>
+				<p class="grey-text text-lighten-4">本站提供某种你懂的帐号用于科学上网.</p>
 
 
 			</div>
@@ -30,7 +30,9 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			&copy; {$config["appName"]}  Powered by <a class="orange-text text-lighten-3" href="https://github.com/orvice/ss-panel">ss-panel</a> {$config["version"]}
+			&copy; {$config["appName"]}  
+			Powered by <a class="orange-text text-lighten-3" href="https://github.com/Alafafa/AlassPanel">AlassPanel</a> 
+			Based on <a class="orange-text text-lighten-3" href="https://github.com/orvice/ss-panel">ss-panel</a> {$config["version"]}
 		 Theme by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
 		</div>
 		<div style="display:none;">

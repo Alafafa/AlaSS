@@ -29,7 +29,6 @@ $app = new App([
 ]);
 $app->add(new WhoopsMiddleware);
 
-
 // Home
 $app->get('/', 'App\Controllers\HomeController:index');
 $app->get('/code', 'App\Controllers\HomeController:code');

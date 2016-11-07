@@ -18,16 +18,18 @@ class Smtp extends Base
     {
         $this->config = $this->getConfig();
         $mail = new PHPMailer;
-        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+        
+        $mail->SMTPDebug = 3;                                 // Enable verbose debug output
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = $this->config['host'];  // Specify main and backup SMTP servers
+        $mail->Host = $this->config['host'];  		          // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = $this->config['username'];                 // SMTP username
-        $mail->Password = $this->config['passsword'];                    // SMTP password
+        $mail->Username = $this->config['username'];          // SMTP username
+        $mail->Password = $this->config['passsword'];         // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = $this->config['port'];                                    // TCP port to connect to
+        $mail->Port = $this->config['port'];                  // TCP port to connect to
         $mail->setFrom($this->config['sender'], $this->config['name']);
         $mail->CharSet = 'UTF-8';
+        
         $this->mail = $mail;
     }
     
@@ -60,5 +62,4 @@ class Smtp extends Base
         }
         return false;
     }
-
 }

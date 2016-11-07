@@ -165,6 +165,9 @@ class AuthController extends BaseController
         $user->t = 0;
         $user->u = 0;
         $user->d = 0;
+        $user->node_id= Config::get('defaultUserNodeId');
+        $user->type= Config::get('defaultUserType');
+        $user->switch= 1;
         $user->transfer_enable = Tools::toGB(Config::get('defaultTraffic'));
         $user->invite_num = Config::get('inviteNum');
         $user->reg_ip = Http::getClientIP();

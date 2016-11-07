@@ -19,13 +19,47 @@
                     <div class="box-header">
                         <i class="fa fa-bullhorn"></i>
 
-                        <h3 class="box-title">公告&FAQ</h3>
+                        <h3 class="box-title">基本信息</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         {$msg}
                     </div>
                     <!-- /.box-body -->
+                    <dl class="dl-horizontal">
+                        <dt>用户等级</dt>
+                        <dd>
+	                        {if $user->type == 0}
+	                        	测试用户
+	                        {elseif $user->type == 1}
+	                        	高级用户
+	                        {elseif $user->type == 2}
+	                        	中级用户
+	                        {elseif $user->type == 3}
+	                        	初级用户
+	                        {elseif $user->type == 9}
+	                        	友情用户
+	                        {else}
+	                        	未知用户
+	                        {/if}
+                        </td>
+                        <dt>流量配额</dt>
+                        <dd>{$user->enableTraffic()}</dd>
+                        <dt>注册时间</dt>
+                        <dd>{$user->reg_date}</dd>
+                        
+	                    {if $user->type != 0}
+                        <dt>服务生效时间</dt>
+                        <dd>{$user->valid_time}</dd>
+                        <dt>服务到期时间</dt>
+                        <dd>{$user->expire_time}</dd>
+                        {else}
+                        <dt>服务生效时间</dt>
+                        <dd>{$user->reg_date}</dd>
+                        <dt>服务到期时间</dt>
+                        <dd>2099-12-31 23:59:59</dd>
+                        {/if}
+                    </dl>
                 </div>
                 <!-- /.box -->
             </div>
@@ -35,7 +69,6 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <i class="fa fa-exchange"></i>
-
                         <h3 class="box-title">流量使用情况</h3>
                     </div>
                     <!-- /.box-header -->
@@ -52,7 +85,11 @@
                             </div>
                         </div>
                         <dl class="dl-horizontal">
-                            <dt>总流量</dt>
+                        	{if $user->type == 0}
+                        	<dt>总流量(一次性)</dt>
+                        	{else}
+                            <dt>总流量(每月)</dt>
+                            {/if}
                             <dd>{$user->enableTraffic()}</dd>
                             <dt>已用流量</dt>
                             <dd>{$user->usedTraffic()}</dd>
@@ -75,15 +112,18 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <p> 每{$config['checkinTime']}小时可以签到一次。</p>
+                        <p>每{$config['checkinTime']}小时可以签到一次。</p>
 
                         <p>上次签到时间：<code>{$user->lastCheckInTime()}</code></p>
+                        <p style='height:6px'></p>
                         {if $user->isAbleToCheckin() }
                             <p id="checkin-btn">
-                                <button id="checkin" class="btn btn-success  btn-flat">签到</button>
+                                <button id="checkin" class="btn btn-success btn-flat">签到</button>
                             </p>
                         {else}
-                            <p><a class="btn btn-success btn-flat disabled" href="#">不能签到</a></p>
+                            <p>
+                            	<a class="btn btn-success btn-flat disabled" href="#">不能签到</a>
+                            </p>
                         {/if}
                         <p id="checkin-msg"></p>
                     </div>
@@ -103,17 +143,22 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <dl class="dl-horizontal">
-                            <dt>端口</dt>
-                            <dd>{$user->port}</dd>
-                            <dt>密码</dt>
-                            <dd>{$user->passwd}</dd>
-                            <dt>主机</dt>
                         	{if $user->isAbleToChgNode() }
+                            <dt>服务器</dt>
                             <dd>不限</dd>
                         	{else}
-                            <dd>{$user->node_id}</dd>
+                            <dt>服务器地址</dt>
+                            <dd>
+                            	{$node->server} 
+                            	&nbsp;
+                            	<a href="./user/node/{$node->id}"><span class="badge bg-blue">详细</span></a>
+                            </dd>
                         	{/if}
-                            <dt>自定义加密方式</dt>
+                            <dt>连接端口</dt>
+                            <dd>{$user->port}</dd>
+                            <dt>加密密码</dt>
+                            <dd>{$user->passwd}</dd>
+                            <dt>加密方式</dt>
                             <dd>{$user->method}</dd>
                             <dt>上次使用</dt>
                             <dd>{$user->lastSsTime()}</dd>

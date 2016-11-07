@@ -3,8 +3,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            节点列表
-            <small>Node List</small>
+            节点信息
+            <small>Node Info</small>
         </h1>
     </section>
     <!-- Main content -->

